@@ -1,0 +1,157 @@
+body{
+    background: gray;
+    background-image: linear-gradient(to right, #222, #555);
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    background-color: #222222;
+}
+.container img{
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.mainBody h4{
+    text-align: center;
+    font-size: 30px;
+    font-family: Arial, sans-serif;
+    border: 1px black;
+    border-radius: 5px;
+}
+.mainBody{
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: white;
+}
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+table tr td,
+table tr th {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+.coluning{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+table tr th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+.firstPart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.goCreate{
+    background-color: #e67e22;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color;
+    margin: 20px 10px;
+    font-size: 16px;
+    padding: 15px;
+}
+.goCreate:hover{
+    background-color: #2e9efa;
+}
+.goSort{
+    flex: 1;
+    display: block;
+    background-color: #e67e22;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 4px;
+    width: 90%;
+}
+.goSort:hover{
+    background-color: #2e9efa;
+    border-color: #0056b3;
+}
+form {
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.search {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    margin: 20px 0;
+    padding: 8px;
+}
+input[type=text],
+input[type=date] {
+    border: 1px solid #ccc;
+    padding: 8px;
+    font-family: Arial, sans-serif;
+    width: 90%;
+}
+label {
+    display: block;
+}
+.btnSearch{
+    background-color: #e67e22;
+    color: #eeeeee;
+    border:none;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+.cheking{
+    background-color: #22d6e6;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color;
+    font-size: 16px;
+    padding: 8px;
+}
+.cheking:hover{
+    background-color: #2e9efa;
+}
+.deleting{
+    background-color: #ee1f30;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    border:none;
+    transition: background-color;
+    font-size: 16px;
+    padding: 8px;
+}
+.deleting:hover{
+    background-color: #2e9efa;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.contain {
+    overflow-x: hidden;
+}
+.contain:hover{
+    overflow-x: auto;
+}

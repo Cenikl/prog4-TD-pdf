@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "ISO-8859-1" />
+    <link th:href="@{/styles/index.css}" rel = "stylesheet"/>
+    <title>Employees</title>
+</head>
+<body>
+<div class="mainBody">
+    <div class="con2">
+        <div class="container">
+            <img th:src="@{'/index/employee'}" alt="Aucune image" class="Img">
+        </div>
+
+        <h4 th:text="${enterprise.name}"></h4>
+    </div>
+    <div class="firstPart">
+        <a class="goCreate"  th:href="@{/enterprise}">Update Enterprise</a>
+        <a class="goCreate" th:href="@{/index/exportCsv}" download="employees.csv">Export as CSV</a>
+        <a class="goCreate"  th:href="@{/form}">Create an employee</a>
+    </div>
+    <form th:action="@{/index}" method="get">
+        <input type="text" id="name" name="name" class="search" placeholder="FirstName"/>
+
+        <input type="text" name="lastName" class="search" placeholder="LastName"/>
+
+        <select id="sex" name="gender" class="search">
+            <option value="">Gender</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+
+        <input type="text" name="role" class="search" placeholder="Role"/>
+
+        <input type="text" name="cCode" class="search" placeholder="CountryCode"/>
+
+        <input type="date" name="employementDate" class="search" placeholder="EmployementDate"/>
+
+        <input type="date" name="departureDate" class="search" placeholder="DepartureDate"/>
+
+        <button type="submit" class="btnSearch">Filter</button>
+    </form>
+    <div class="contain">
+    <table>
+        <thead>
+        <tr>
+            <th class="coluning">
+                <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=firstNameAsc' : request.queryString+'&'+'sort=firstNameAsc') : '')}" th:text="FirstNameAsc" class="goSort"></a>
+                <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=firstNameDesc' : request.queryString+'&'+'sort=firstNameDesc') : '')}"  th:text="FirstNameDesc" class="goSort"></a>
+            </th>
+            <th>
+                <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=lastNameAsc' : request.queryString+'&'+'sort=lastNameAsc') : '')}" th:text="lastNameAsc" class="goSort"></a>
+                <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=lastNameDesc' : request.queryString+'&'+'sort=lastNameDesc') : '')}" th:text="lastNameDesc" class="goSort"></a>
+            </th>
+            <th>Birth Date</th>
+            <th>Matricule</th>
+            <th class="coluning">
+                <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=genderAsc' : request.queryString+'&'+'sort=genderAsc') : '')}" th:text="GenderAsc" class="goSort"></a>
+                <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=genderDesc' : request.queryString+'&'+'sort=genderDesc') : '')}" th:text="GenderDesc" class="goSort"></a>
+            </th>
+            <th>Csp</th>
+            <th>Address</th>
+            <th>Email Professionel</th>
+            <th>Email Personnel</th>
+            <th class="coluning">
+                <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=roleAsc' : request.queryString+'&'+'sort=roleAsc') : '')}" th:text="roleAsc" class="goSort"></a>
+                <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=roleDesc' : request.queryString+'&'+'sort=roleDesc') : '')}" th:text="roleDesc" class="goSort"></a>
+            </th>
+            <th>Nombre d'Enfants</th>
+            <th>
+                <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=dDateAsc' : request.queryString+'&'+'sort=dDateAsc') : '')}" th:text="dDateAsc" class="goSort"></a>
+                <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=dDateDesc' : request.queryString+'&'+'sort=dDateDesc') : '')}" th:text="dDateDesc" class="goSort"></a>
+            </th>
+            <th class="coluning">
+                <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=eDateAsc' : request.queryString+'&'+'sort=eDateAsc') : '')}" th:text="eDateAsc" class="goSort"></a>
+                <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=eDateDesc' : request.queryString+'&'+'sort=eDateDesc') : '')}" th:text="eDateDesc" class="goSort"></a>
+            </th>
+            <th>Cnaps</th>
+            <th>Phone Number</th>
+            <th>CIN</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employee: ${employees}">
+                <td th:text="${employee.firstName}" />
+                <td th:text="${employee.lastName}" />
+                <td th:text="${employee.birthDate}" />
+                <td th:text="${employee.matricule}" />
+                <td th:text="${employee.sex}" />
+                <td th:text="${employee.csp}" />
+                <td th:text="${employee.address}" />
+                <td th:text="${employee.emailPro}" />
+                <td th:text="${employee.emailPerso}" />
+                <td th:text="${employee.role}" />
+                <td th:text="${employee.child}" />
+                <td th:text="${employee.employementDate}" />
+                <td th:text="${employee.departureDate}" />
+                <td th:text="${employee.cnaps}" />
+                <td>
+                    <ul>
+                        <li th:each="test : ${employee.phones}" th:text="${test.countryCode+test.phoneNumber}"></li>
+                    </ul>
+                </td>
+                <td th:text="${employee.cin}" />
+                <td>
+                    <a th:href="@{/formEmployee/{matricule}(matricule=${employee.matricule})}" class="cheking">Check</a>
+                    <button class="deleting">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+</body>
+</html>

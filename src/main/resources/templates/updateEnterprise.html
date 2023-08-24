@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/update.css}" rel = "stylesheet"/>
+    <title>Update Enterprise</title>
+</head>
+<body>
+<div class="mainBody" th:object="${enterprise}">
+    <h4>Update Information</h4>
+    <a class="goUpdate" th:href="@{/index}">Return to main menu</a>
+    <form action="#" th:action="@{/updateEnt}"  method="post" enctype="multipart/form-data">
+        <label th:text="Name"/>
+        <input type="text" name="name" th:value="*{name}" required/>
+
+        <label th:text="Desription"/>
+        <input type="text" name="desc" th:value="*{description}" required/>
+
+        <label th:text="Slogan"/>
+        <input type="text" name="slogan" th:value="*{slogan}" required/>
+
+        <label th:text="Image"/>
+        <input type="file" name="Img"/>
+
+        <label th:text="Address"/>
+        <input type="text" name="address" th:value="*{address}" required/>
+
+        <label th:text="Email"/>
+        <input type="email" name="email" th:value="*{email}" required/>
+
+        <label th:text="Nif"/>
+        <input type="text" name="nif" th:value="*{nif}" required/>
+
+        <label th:text="Stat"/>
+        <input type="text" name="stat" th:value="*{stat}" required/>
+
+        <label th:text="Rcs"/>
+        <input type="text" name="rcs" th:value="*{rcs}" required/>
+
+        <label>Country Code:</label>
+        <input type="text" name="cCode" required/>
+
+        <label>Phone number (comma-separated):</label>
+        <input type="text" name="phoneNumbers" required minlength="10"/>
+
+        <input type="submit" value="Submit" class="btnSubmit"/></td>
+    </form>
+</div>
+</body>
+</html>

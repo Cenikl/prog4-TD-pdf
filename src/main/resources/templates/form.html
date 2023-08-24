@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/form.css}" rel = "stylesheet"/>
+    <title>Creating an employee</title>
+</head>
+<body>
+        <div class="mainBody">
+                <h4>Create a new employee</h4>
+                <a class="goUpdate" th:href="@{/index}">Return to main menu</a>
+                <form action="#" th:action="@{/saveEmployee}" method="post" enctype="multipart/form-data">
+                        <label th:text="FirstName"/>
+                        <input type="text" name="name" required/>
+
+                        <label th:text="LastName"/>
+                        <input type="text" name="lastName" required/>
+
+                        <label th:text="BirthDate"/>
+                        <input type="date" name="birthDate" required/>
+
+                        <label th:text="Image"/></td>
+                        <input type="file" name="testImg"/>
+
+                        <label for="genderChoose">Choose a gender :</label>
+                        <select id="genderChoose" name="gender">
+                                <option value="">Choose a gender</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                        </select>
+
+                        <label for="cspChoose">Choose scp :</label>
+                        <select id="cspChoose" name="csp">
+                                <option value=""></option>
+                                <option value="M1">M1</option>
+                                <option value="M2">M2</option>
+                                <option value="OS1">OS1</option>
+                                <option value="OS2">OS2</option>
+                                <option value="OS3">OS3</option>
+                                <option value="OP1">OP1</option>
+                        </select>
+
+                        <label th:text="Address"/>
+                        <input type="text" name="address" required/>
+
+                        <label th:text="EmailPro"/>
+                        <input type="email" name="emailPro" required/>
+
+                        <label th:text="EmailPerso"/>
+                        <input type="email" name="emailPerso" required/>
+
+                        <label th:text="Role"/>
+                        <input type="text" name="role" required/>
+
+                        <label th:text="Children"/>
+                        <input type="number" name="child"required/>
+
+                        <label th:text="EmployementDate"/>
+                        <input type="date" name="employementDate" required/>
+
+                        <label th:text="DepartureDate"/>
+                        <input type="date" name="departureDate" required/>
+
+                        <label>Country Code:</label>
+                        <input type="text" name="cCode" required/>
+
+                        <label>Phone number (comma-separated):</label>
+                        <input type="text" name="phoneNumbers" required minlength="10"/>
+
+                        <label>Cin :</label>
+                        <input type="text" name="cinNumber" required/>
+
+                        <input type="submit" value="Submit" class="btnSubmit"/>
+                </form>
+        </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/employee.css}" rel = "stylesheet"/>
+    <title>Fiche Employee</title>
+</head>
+<body>
+<div class="mainBody" th:object="${employee}">
+    <div class="head">
+        <div class="prfImg">
+            <img th:src="@{'/formEmployee/image/'+*{id}}" alt="Aucune image" class="Img">
+        </div>
+        <div class="desc">
+            <h1>Fiche d'Information sur l'Employee</h1>
+            <a class="goUpdate" th:href="@{/updateEmployee/{matricule}(matricule=${employee.matricule})}">Update information</a>
+            <a class="goUpdate" th:href="@{/index}">Return to main menu</a>
+        </div>
+    </div>
+    <div class="emplInfo">
+        <label th:text="Name" />
+        <p th:text="*{firstName}" />
+
+        <label th:text="lastName" />
+        <p th:text="*{lastName}" />
+
+        <label th:text="birthDate" />
+        <p th:text="*{birthDate}" />
+
+        <label th:text="Matricule" />
+        <p th:text="*{matricule}" />
+
+        <label th:text="Gender" />
+        <p th:text="*{sex}" />
+
+        <label th:text="Csp" />
+        <p th:text="*{csp}" />
+
+        <label th:text="Address" />
+        <p th:text="*{address}" />
+
+        <label th:text="EmailPro" />
+        <p th:text="*{emailPro}" />
+
+        <label th:text="EmailPerso" />
+        <p th:text="*{emailPerso}" />
+
+        <label th:text="Role" />
+        <p th:text="*{role}" />
+
+        <label th:text="Child" />
+        <p th:text="*{child}" />
+
+        <label th:text="EmployementDate" />
+        <p th:text="*{employementDate}" />
+
+        <label th:text="DepartureDate" />
+        <p th:text="*{departureDate}" />
+
+        <label th:text="Cnaps" />
+        <p th:text="*{cnaps}" />
+
+        <label th:text="PhoneNumber" />
+        <p th:each="test : ${employee.phones}" th:text="${test.countryCode+test.phoneNumber}"/>
+
+        <label th:text="CIN" />
+        <p th:text="${employee.cin}" />
+    </div>
+</div>
+</body>
+</html>

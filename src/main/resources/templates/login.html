@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/styles/form.css}" rel = "stylesheet"/>
+    <title>Login Page</title>
+</head>
+<body>
+<form action="#" th:action="@{/}" method="post">
+    <label th:text="Username"/>
+    <input type="text" name="username" required/>
+
+    <label th:text="Password"/>
+    <input type="password" name="password" required/>
+
+    <input type="submit" value="Submit" class="btnSubmit"/>
+</form>
+</body>
+</html>
