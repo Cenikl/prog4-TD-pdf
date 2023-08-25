@@ -52,21 +52,17 @@
                 <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=lastNameAsc' : request.queryString+'&'+'sort=lastNameAsc') : '')}" th:text="lastNameAsc" class="goSort"></a>
                 <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=lastNameDesc' : request.queryString+'&'+'sort=lastNameDesc') : '')}" th:text="lastNameDesc" class="goSort"></a>
             </th>
-            <th>Birth Date</th>
             <th>Matricule</th>
             <th class="coluning">
                 <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=genderAsc' : request.queryString+'&'+'sort=genderAsc') : '')}" th:text="GenderAsc" class="goSort"></a>
                 <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=genderDesc' : request.queryString+'&'+'sort=genderDesc') : '')}" th:text="GenderDesc" class="goSort"></a>
             </th>
-            <th>Csp</th>
             <th>Address</th>
             <th>Email Professionel</th>
-            <th>Email Personnel</th>
             <th class="coluning">
                 <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=roleAsc' : request.queryString+'&'+'sort=roleAsc') : '')}" th:text="roleAsc" class="goSort"></a>
                 <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=roleDesc' : request.queryString+'&'+'sort=roleDesc') : '')}" th:text="roleDesc" class="goSort"></a>
             </th>
-            <th>Nombre d'Enfants</th>
             <th>
                 <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=dDateAsc' : request.queryString+'&'+'sort=dDateAsc') : '')}" th:text="dDateAsc" class="goSort"></a>
                 <a th:href="${request.requestURL+'?'+(request.queryString != null ? (#strings.contains(request.queryString,'sort=') ? #strings.substringBefore(request.queryString,'sort')+'sort=dDateDesc' : request.queryString+'&'+'sort=dDateDesc') : '')}" th:text="dDateDesc" class="goSort"></a>
@@ -77,7 +73,6 @@
             </th>
             <th>Cnaps</th>
             <th>Phone Number</th>
-            <th>CIN</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -85,15 +80,11 @@
             <tr th:each="employee: ${employees}">
                 <td th:text="${employee.firstName}" />
                 <td th:text="${employee.lastName}" />
-                <td th:text="${employee.birthDate}" />
                 <td th:text="${employee.matricule}" />
                 <td th:text="${employee.sex}" />
-                <td th:text="${employee.csp}" />
                 <td th:text="${employee.address}" />
                 <td th:text="${employee.emailPro}" />
-                <td th:text="${employee.emailPerso}" />
                 <td th:text="${employee.role}" />
-                <td th:text="${employee.child}" />
                 <td th:text="${employee.employementDate}" />
                 <td th:text="${employee.departureDate}" />
                 <td th:text="${employee.cnaps}" />
@@ -102,10 +93,9 @@
                         <li th:each="test : ${employee.phones}" th:text="${test.countryCode+test.phoneNumber}"></li>
                     </ul>
                 </td>
-                <td th:text="${employee.cin}" />
                 <td>
                     <a th:href="@{/formEmployee/{matricule}(matricule=${employee.matricule})}" class="cheking">Check</a>
-                    <button class="deleting">Delete</button>
+                    <a th:href="@{/fiche/{matricule}(matricule=${employee.matricule})}" class="cheking">Fiche</a>
                 </td>
             </tr>
         </tbody>

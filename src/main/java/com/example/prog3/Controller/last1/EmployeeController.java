@@ -142,7 +142,7 @@ public class EmployeeController extends TokenController {
     @GetMapping("/fiche/{matricule}")
     public String fiche(@PathVariable String matricule,Model model){
         Enterprise enterprise = enterpriseService.getEnterprise();
-        model.addAttribute("employee",employeeService.getByMatriculeWithCnaps(matricule));
+        model.addAttribute("employee",employeeService.showEmployeeInfo(matricule));
         model.addAttribute("enterprise",enterprise);
         return "fiche";
     }

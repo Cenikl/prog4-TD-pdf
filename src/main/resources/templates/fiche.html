@@ -6,45 +6,47 @@
     <title>Fiche Employee</title>
 </head>
 <body>
-    <div class="mainBody">
+    <div class="mainBody" th:object="${employee}">
         <div class="heading">
             <div class="first">
                 <div class="emplImg">
-                <img src="" alt="Photo 4x4" class="centerImg">
+                    <img th:src="@{'/formEmployee/image/'+*{id}}" alt="Photo 4x4" class="centerImg">
                 </div>
             </div>
             <div class="second">
                 <h2>FICHE EMPLOYE</h2>
-                <p>Numéro matricule:</p>
-                <p>Noms:</p>
-                <p>Prénoms:</p>
-                <p>Age:</p>
-                <p>Date d'embauche:</p>
-                <p>Date de départ:</p>
-                <p>Numéro CNAPS:</p>
+                <p>Numéro matricule: <span th:text="*{matricule}"></span></p>
+                <p>Noms: <span th:text="*{firstName}"></span></p>
+                <p>Prénoms: <span th:text="*{lastName}"></span></p>
+                <p>Age: <span th:text="*{age}"></span></p>
+                <p>Date d'embauche: <span th:text="*{employementDate}"></span></p>
+                <p>Date de départ: <span th:text="*{departureDate}"></span></p>
+                <p>Numéro CNAPS: <span th:text="*{cnaps}"></span></p>
             </div>
         </div>
         <div class="middleBody">
             <h4>Informations sur le salaire</h4>
-            <h4 class="salary">Salaire brute actuel : xxx Ariary / mois</h4>
+            <h4 class="salary">Salaire brute actuel : <span th:text="*{salary}"></span> Ariary / mois</h4>
         </div>
         <footer>
             <hr>
             <div class="bottom">
                 <div class="partone">
                     <div class="entrImg">
-                    <img src="" alt="Logo de l'entreprise" class="logoEntr">
+                        <img th:src="@{'/index/employee'}" alt="Logo de l'entreprise" class="logoEntr">
                     </div>
                     </div>
                 <div class="parttwo">
-                    <h4>Nom de l'entreprise</h4>
-                    <h4>NIF</h4>
-                    <h4>STAT</h4>
+                    <h4 th:text="${enterprise.name}"></h4>
+                    <h4 th:text="${enterprise.nif}">NIF</h4>
+                    <h4 th:text="${enterprise.stat}">STAT</h4>
                 </div>
                 <div class="partthree">
-                    <h4>Adresse de l'entreprise</h4>
-                    <h4>Numéro téléphone</h4>
-                    <h4>Email</h4>
+                    <h4 th:text="${enterprise.address}">Adresse de l'entreprise</h4>
+                    <ul>
+                        <li th:each="test : ${enterprise.phones}" th:text="${test.countryCode+test.phoneNumber}"></li>
+                    </ul>
+                    <h4 th:text="${enterprise.email}">Email</h4>
                 </div>
             </div>
         </footer>

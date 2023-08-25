@@ -1,9 +1,11 @@
 package com.example.prog3.Service.last1;
 
 import com.example.prog3.Repository.RepositoryFacadeImpl;
+import com.example.prog3.dto.EmployeeDetails;
 import com.example.prog3.model.last1.Employee;
 import com.example.prog3.Repository.last1.EmployeeRepository;
 import com.example.prog3.model.last1.Phone;
+import com.example.prog3.utils.AgeCalculator;
 import com.example.prog3.utils.MatriculeGenerator;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -235,4 +237,18 @@ public class EmployeeService {
         employee.setCin(cin);
         return employeeRepository.save(employee);
         }
+    public EmployeeDetails showEmployeeInfo(String matricule){
+        Employee employee = getByMatriculeWithCnaps(matricule);
+        EmployeeDetails employeeDetails = new EmployeeDetails();
+        employeeDetails.setId(employee.getId());
+        employeeDetails.setMatricule(employee.getMatricule());
+        employeeDetails.setFirstName(employee.getFirstName());
+        employeeDetails.setLastName(employee.getLastName());
+        employeeDetails.setAge(AgeCalculator.age(employee.getBirthDate(),LocalDate.now()));
+        employeeDetails.setEmployementDate(employee.getEmployementDate());
+        employeeDetails.setDepartureDate(employee.getDepartureDate());
+        employeeDetails.setCnaps(employee.getCnaps());
+        employeeDetails.setSalary(employee.getWage());
+        return employeeDetails;
+    }
 }
