@@ -9,7 +9,7 @@
 <div class="mainBody" th:object="${employee}">
     <div class="head">
         <div class="prfImg">
-            <img th:src="@{'/formEmployee/image/'+*{id}}" alt="Aucune image" class="Img">
+            <img th:src="'data:image/jpeg;base64,' + *{emplImg}" alt="Aucune image" class="Img">
         </div>
         <div class="desc">
             <h1>Fiche d'Information sur l'Employee</h1>

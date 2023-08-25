@@ -67,7 +67,7 @@ public class Employee {
     private int wage;
 
     @Lob
-    private byte[] emplImg;
+    private String emplImg;
 
     @OneToMany(mappedBy = "phoneEmployee")
     private List<Phone> phones;

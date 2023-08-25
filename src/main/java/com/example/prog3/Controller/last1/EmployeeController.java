@@ -12,6 +12,7 @@ import com.lowagie.text.DocumentException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -99,7 +100,8 @@ public class EmployeeController extends TokenController {
             @RequestParam(value = "cCode",required = false) String cCode,
             @RequestParam("phoneNumbers") String phoneNumbers,
             @RequestParam("cinNumber") String cinNumber) throws IOException {
-        byte[] fileData = file.getBytes();
+        byte[] filing = file.getBytes();
+        String fileData = Base64.encodeBase64String(filing);
         String[] numberList = phoneNumbers.split(",");
         for (String phoneNumber : numberList) {
             if(phoneNumber.length() != 10){
@@ -117,23 +119,6 @@ public class EmployeeController extends TokenController {
     public String form(@ModelAttribute Employee employee, Model model){
         model.addAttribute("employee", new Employee());
         return "form";
-    }
-
-    @GetMapping("/formEmployee/image/{id}")
-    public ResponseEntity<byte[]> showImage(@PathVariable Long id) {
-        Optional<Employee> employeeOptional = employeeService.getById(id);
-        byte[] imageData = employeeOptional.get().getEmplImg();
-        HttpHeaders header = new HttpHeaders();
-        header.setContentType(MediaType.IMAGE_JPEG);
-        return new ResponseEntity<>(imageData,header, HttpStatus.OK);
-    }
-    @GetMapping("/index/employee")
-    public ResponseEntity<byte[]> showImageE() {
-        Enterprise enterprise = enterpriseService.getEnterprise();
-        byte[] imageData = enterprise.getLogo();
-        HttpHeaders header = new HttpHeaders();
-        header.setContentType(MediaType.IMAGE_JPEG);
-        return new ResponseEntity<>(imageData,header, HttpStatus.OK);
     }
 
     @GetMapping("/updateEmployee/{matricule}")
@@ -193,7 +178,8 @@ public class EmployeeController extends TokenController {
             @RequestParam("cCode") String cCode,
             @RequestParam("phoneNumbers") String phoneNumbers,
             @RequestParam("cinNumber") String cinNumber) throws IOException {
-                byte[] fileData = file.getBytes();
+                byte[] filing = file.getBytes();
+                String fileData = Base64.encodeBase64String(filing);
                 String[] numberList = phoneNumbers.split(",");
                 for (String phoneNumber : numberList) {
                     if(phoneNumber.length() != 10){

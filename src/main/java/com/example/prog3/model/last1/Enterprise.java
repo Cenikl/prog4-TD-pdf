@@ -42,7 +42,7 @@ public class Enterprise {
     private String rcs;
 
     @Lob
-    private byte[] logo;
+    private String logo;
 
     @OneToMany(mappedBy = "phoneEnterprise")
     private List<Phone> phones;

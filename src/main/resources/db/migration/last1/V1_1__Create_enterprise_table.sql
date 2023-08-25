@@ -9,5 +9,5 @@ create table if not exists "enterprise"(
     nif varchar not null,
     stat varchar not null,
     rcs varchar not null,
-    logo OID
+    logo oid
 );

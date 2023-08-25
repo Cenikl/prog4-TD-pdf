@@ -206,7 +206,7 @@ public class EmployeeService {
         return Sort.by(Sort.Direction.ASC,"id");
     }
 
-    public Employee createEmployee(String firstName, String lastName, LocalDate birthDate, String sex, String csp, String address, String emailPro, String emailPerso, String role, Integer child, LocalDate eDate, LocalDate dDate, String cnaps, String cin, byte[] emplImg) {
+    public Employee createEmployee(String firstName, String lastName, LocalDate birthDate, String sex, String csp, String address, String emailPro, String emailPerso, String role, Integer child, LocalDate eDate, LocalDate dDate, String cnaps, String cin, String emplImg) {
         Employee employee = new Employee();
         employee.setFirstName(firstName);
         employee.setLastName(lastName);
@@ -226,7 +226,7 @@ public class EmployeeService {
         employee.setCin(cin);
         return employeeRepository.save(employee);
     };
-    public Employee crupdateEmployee(String matricule, String name, String lastName, LocalDate birthDate, String sex, String csp, String address, String emailPro, String emailPerso, String role, Integer child, LocalDate eDate, LocalDate dDate, String cin, byte[] image){
+    public Employee crupdateEmployee(String matricule, String name, String lastName, LocalDate birthDate, String sex, String csp, String address, String emailPro, String emailPerso, String role, Integer child, LocalDate eDate, LocalDate dDate, String cin, String image){
         Employee employee = getByMatricule(matricule);
         employee.setFirstName(name);
         employee.setLastName(lastName);
@@ -256,6 +256,7 @@ public class EmployeeService {
         employeeDetails.setDepartureDate(employee.getDepartureDate());
         employeeDetails.setCnaps(employee.getCnaps());
         employeeDetails.setSalary(employee.getWage());
+        employeeDetails.setImage(employee.getEmplImg());
         return employeeDetails;
     }
 

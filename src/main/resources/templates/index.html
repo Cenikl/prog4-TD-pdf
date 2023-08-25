@@ -9,7 +9,7 @@
 <div class="mainBody">
     <div class="con2">
         <div class="container">
-            <img th:src="@{'/index/employee'}" alt="Aucune image" class="Img">
+            <img th:src="'data:image/jpeg;base64,' + ${enterprise.logo}" alt="Aucune image" class="Img">
         </div>
 
         <h4 th:text="${enterprise.name}"></h4>

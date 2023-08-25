@@ -18,6 +18,6 @@ create table if not exists "cnaps"
     departureDate date,
     cnaps varchar not null,
     cin varchar not null,
-    emplImg OID,
+    emplImg oid,
     endToEndId varchar not null
 );

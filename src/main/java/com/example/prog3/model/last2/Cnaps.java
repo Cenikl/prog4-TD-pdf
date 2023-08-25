@@ -64,7 +64,7 @@ public class Cnaps {
     private String cin;
 
     @Lob
-    private byte[] emplImg;
+    private String emplImg;
 
     @Column(nullable = false)
     private int wage;

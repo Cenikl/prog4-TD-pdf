@@ -22,7 +22,7 @@ public class EnterpriseService {
             String nif,
             String stat,
             String rcs,
-            byte[] logo){
+            String logo){
         Enterprise enterprise = getEnterprise();
         enterprise.setName(name);
         enterprise.setDescription(desc);

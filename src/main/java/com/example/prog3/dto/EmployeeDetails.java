@@ -21,4 +21,5 @@ public class EmployeeDetails {
     private LocalDate departureDate;
     private String cnaps;
     private int salary;
+    private String image;
 }
