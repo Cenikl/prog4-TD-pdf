@@ -1,0 +1,95 @@
+.mainBody{
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    height: 90%;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.heading{
+    display: flex;
+    flex-direction: row;
+}
+.first{
+    flex-basis: 50%;
+}
+.emplImg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border:1px solid black;
+    margin-left: 20px;
+    margin-top: 20px;
+    height:60%;
+    width:55%;
+}
+.centerImg{
+    max-height: 100%;
+    max-width: 100%;
+}
+.second{
+    flex-basis: 50%;
+}
+.second h2{
+    text-align: center;
+}
+.second p {
+    margin-top: 0;
+    margin-bottom: 6px;
+}
+.middleBody{
+    margin-left: 20px;
+}
+.salary{
+    margin-left: 25px;
+}
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+footer hr{
+    border: 1px solid black;
+    width: 90%;
+}
+footer h4{
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+.bottom{
+    display: flex;
+    flex-direction: row;
+}
+.partone{
+    flex-basis: 34%;
+}
+.entrImg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: 20px;
+    margin-top: 20px;
+    height:60%;
+    width:90%;
+}
+.logoEntr{
+    max-height: 100%;
+    max-width: 100%;
+}
+.parttwo{
+    flex-basis: 33%;
+}
+.partthree{
+    flex-basis: 33%;
+}
