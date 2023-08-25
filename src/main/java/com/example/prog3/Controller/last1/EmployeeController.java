@@ -5,8 +5,10 @@ import com.example.prog3.Service.last1.EmployeeService;
 import com.example.prog3.Service.last1.EnterpriseService;
 import com.example.prog3.Service.last1.PhoneService;
 import com.example.prog3.Service.last2.CnapsService;
+import com.example.prog3.dto.EmployeeDetails;
 import com.example.prog3.model.last1.Employee;
 import com.example.prog3.model.last1.Enterprise;
+import com.lowagie.text.DocumentException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
@@ -19,8 +21,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.context.IContext;
+import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import java.io.*;
+import java.nio.file.FileSystems;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -33,6 +42,8 @@ public class EmployeeController extends TokenController {
     private final PhoneService phoneService;
     private final EnterpriseService enterpriseService;
     private final CnapsService cnapsService;
+    private final TemplateEngine templateEngine;
+
 
     @GetMapping("/index")
     public String index(
@@ -145,6 +156,22 @@ public class EmployeeController extends TokenController {
         model.addAttribute("employee",employeeService.showEmployeeInfo(matricule));
         model.addAttribute("enterprise",enterprise);
         return "fiche";
+    }
+    @GetMapping("/fiche/pdf/{matricule}")
+    public void downloadPdf(@PathVariable String matricule) throws IOException, DocumentException {
+        EmployeeDetails employeeDetails = employeeService.showEmployeeInfo(matricule);
+        Enterprise enterprise = enterpriseService.getEnterprise();
+        Context context = new Context();
+        context.setVariable("employee",employeeDetails);
+        context.setVariable("enterprise",enterprise);
+        String test = templateEngine.process("fiche", context);
+        String outputFolder = System.getProperty("user.home")+File.separator+"test.pdf";
+        OutputStream outputStream = new FileOutputStream(outputFolder);
+        ITextRenderer renderer = new ITextRenderer();
+        renderer.setDocumentFromString(test);
+        renderer.layout();
+        renderer.createPDF(outputStream);
+        outputStream.close();
     }
 
     @PostMapping("/updateEmp/{matricule}")

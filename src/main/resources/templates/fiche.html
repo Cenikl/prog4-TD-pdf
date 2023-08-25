@@ -1,27 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link th:href="@{/styles/fiche.css}" rel = "stylesheet"/>
+    <meta charset="UTF-8"/>
     <title>Fiche Employee</title>
+    <style>
+        .heading{
+            position: relative;
+        }
+        .first{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .second{
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+
+        .second h2{
+            text-align: center;
+            margin-right: 25px;
+        }
+        .info {
+            margin-top: 0;
+            margin-bottom: 6px;
+            margin-right: 50px;
+        }
+        .middleBody{
+            margin-top: 42%;
+        }
+        .salary{
+            margin-left: 25px;
+        }
+
+        footer{
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        footer hr{
+            border: 1px solid black;
+            width: 90%;
+        }
+        .bottom{
+            overflow: hidden;
+        }
+        .child{
+            float: left;
+            width: 33.33%;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+    </style>
 </head>
-<body>
-    <div class="mainBody" th:object="${employee}">
+<body th:object="${employee}">
+    <img th:src="@{classpath:static/images/zelda1.jpg}" alt=""/>
         <div class="heading">
             <div class="first">
                 <div class="emplImg">
-                    <img th:src="@{'/formEmployee/image/'+*{id}}" alt="Photo 4x4" class="centerImg">
+                    <img src="../static/images/zelda1.jpg" alt="Photo 4x4" class="centerImg"/>
                 </div>
             </div>
             <div class="second">
                 <h2>FICHE EMPLOYE</h2>
-                <p>Numéro matricule: <span th:text="*{matricule}"></span></p>
-                <p>Noms: <span th:text="*{firstName}"></span></p>
-                <p>Prénoms: <span th:text="*{lastName}"></span></p>
-                <p>Age: <span th:text="*{age}"></span></p>
-                <p>Date d'embauche: <span th:text="*{employementDate}"></span></p>
-                <p>Date de départ: <span th:text="*{departureDate}"></span></p>
-                <p>Numéro CNAPS: <span th:text="*{cnaps}"></span></p>
+                <p class="info">Numéro matricule: <span th:text="*{matricule}"></span></p>
+                <p class="info">Noms: <span th:text="*{firstName}"></span></p>
+                <p class="info">Prénoms: <span th:text="*{lastName}"></span></p>
+                <p class="info">Age: <span th:text="*{age}"></span></p>
+                <p class="info">Date d'embauche: <span th:text="*{employementDate}"></span></p>
+                <p class="info">Date de départ: <span th:text="*{departureDate}"></span></p>
+                <p class="info">Numéro CNAPS: <span th:text="*{cnaps}"></span></p>
             </div>
         </div>
         <div class="middleBody">
@@ -29,19 +81,19 @@
             <h4 class="salary">Salaire brute actuel : <span th:text="*{salary}"></span> Ariary / mois</h4>
         </div>
         <footer>
-            <hr>
+            <hr/>
             <div class="bottom">
-                <div class="partone">
+                <div class="child">
                     <div class="entrImg">
-                        <img th:src="@{'/index/employee'}" alt="Logo de l'entreprise" class="logoEntr">
+                        <img th:src="@{'http://localhost:8080/index/employee'}" alt="Logo de l'entreprise" class="logoEntr"/>
                     </div>
                     </div>
-                <div class="parttwo">
+                <div class="child">
                     <h4 th:text="${enterprise.name}"></h4>
                     <h4 th:text="${enterprise.nif}">NIF</h4>
                     <h4 th:text="${enterprise.stat}">STAT</h4>
                 </div>
-                <div class="partthree">
+                <div class="child">
                     <h4 th:text="${enterprise.address}">Adresse de l'entreprise</h4>
                     <ul>
                         <li th:each="test : ${enterprise.phones}" th:text="${test.countryCode+test.phoneNumber}"></li>
@@ -50,6 +102,5 @@
                 </div>
             </div>
         </footer>
-    </div>
 </body>
 </html>

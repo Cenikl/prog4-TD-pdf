@@ -4,9 +4,11 @@ import com.example.prog3.Repository.RepositoryFacadeImpl;
 import com.example.prog3.dto.EmployeeDetails;
 import com.example.prog3.model.last1.Employee;
 import com.example.prog3.Repository.last1.EmployeeRepository;
+import com.example.prog3.model.last1.Enterprise;
 import com.example.prog3.model.last1.Phone;
 import com.example.prog3.utils.AgeCalculator;
 import com.example.prog3.utils.MatriculeGenerator;
+import com.lowagie.text.DocumentException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -18,9 +20,13 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.xhtmlrenderer.pdf.ITextRenderer;
 
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -32,6 +38,7 @@ public class EmployeeService {
     private EntityManager entityManager;
     private final EmployeeRepository employeeRepository;
     private final RepositoryFacadeImpl repository;
+    private final EnterpriseService enterpriseService;
 
     public void exportToCsv(List<Employee> employees,PhoneService phoneService, HttpServletResponse response) throws IOException {
         String header = "First Name,Last Name,Birth Date,Matricule,Gender,Csp,Address,Email Professionel,Email Personnel,Fonction,Nombres dEnfants,Employement Date,Departure Date,Numéro Cnaps,Telephone,Numéro Cin\n";
@@ -251,4 +258,5 @@ public class EmployeeService {
         employeeDetails.setSalary(employee.getWage());
         return employeeDetails;
     }
+
 }

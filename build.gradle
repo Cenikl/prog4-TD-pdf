@@ -25,9 +25,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.xhtmlrenderer:flying-saucer-parent:9.1.22'
-	implementation("org.xhtmlrenderer:flying-saucer-pdf:9.1.22")
-	implementation 'org.flywaydb:flyway-core'
+	implementation 'org.xhtmlrenderer:flying-saucer-pdf:9.1.22'
 	implementation 'org.flywaydb:flyway-core'
 	implementation 'junit:junit:4.13.1'
 	compileOnly 'org.projectlombok:lombok'
