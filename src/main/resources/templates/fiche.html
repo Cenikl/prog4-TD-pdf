@@ -7,6 +7,19 @@
         .heading{
             position: relative;
         }
+        .emplImg{
+            text-align: center;
+            margin-left: 70px;
+            margin-top: 20px;
+            height:150px;
+            width:150px;
+        }
+        .centerImg{
+            border: 1px solid black;
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
         .first{
             position: absolute;
             top: 0;
@@ -17,8 +30,6 @@
             top: 0;
             right: 0;
         }
-
-
         .second h2{
             text-align: center;
             margin-right: 25px;
@@ -26,7 +37,7 @@
         .info {
             margin-top: 0;
             margin-bottom: 6px;
-            margin-right: 50px;
+            margin-right: 100px;
         }
         .middleBody{
             margin-top: 42%;
@@ -49,6 +60,19 @@
         .bottom{
             overflow: hidden;
         }
+        .entrImg{
+            text-align: center;
+            margin-left: 20px;
+            margin-top: 20px;
+            height:100px;
+            width:150px;
+        }
+        .logoEntr{
+            border: 1px solid black;
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
         .child{
             float: left;
             width: 33.33%;
@@ -58,11 +82,10 @@
     </style>
 </head>
 <body th:object="${employee}">
-    <img th:src="@{classpath:static/images/zelda1.jpg}" alt=""/>
         <div class="heading">
             <div class="first">
                 <div class="emplImg">
-                    <img src="../static/images/zelda1.jpg" alt="Photo 4x4" class="centerImg"/>
+                    <img th:src="'data:image/jpeg;base64,' + *{image}" alt="Photo 4x4" class="centerImg"/>
                 </div>
             </div>
             <div class="second">
@@ -85,7 +108,7 @@
             <div class="bottom">
                 <div class="child">
                     <div class="entrImg">
-                        <img th:src="@{'http://localhost:8080/index/employee'}" alt="Logo de l'entreprise" class="logoEntr"/>
+                        <img th:src="'data:image/jpeg;base64,' + ${enterprise.logo}" alt="Logo de l'entreprise" class="logoEntr"/>
                     </div>
                     </div>
                 <div class="child">

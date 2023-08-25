@@ -143,20 +143,16 @@ public class EmployeeController extends TokenController {
         return "fiche";
     }
     @GetMapping("/fiche/pdf/{matricule}")
-    public void downloadPdf(@PathVariable String matricule) throws IOException, DocumentException {
+    public String downloadPdf(@PathVariable String matricule) throws IOException, DocumentException {
         EmployeeDetails employeeDetails = employeeService.showEmployeeInfo(matricule);
         Enterprise enterprise = enterpriseService.getEnterprise();
         Context context = new Context();
         context.setVariable("employee",employeeDetails);
         context.setVariable("enterprise",enterprise);
-        String test = templateEngine.process("fiche", context);
-        String outputFolder = System.getProperty("user.home")+File.separator+"test.pdf";
-        OutputStream outputStream = new FileOutputStream(outputFolder);
-        ITextRenderer renderer = new ITextRenderer();
-        renderer.setDocumentFromString(test);
-        renderer.layout();
-        renderer.createPDF(outputStream);
-        outputStream.close();
+        employeeService.generatePdfFromHtml(
+                templateEngine.process("fiche", context),
+                employeeDetails.getMatricule());
+        return "redirect:/index";
     }
 
     @PostMapping("/updateEmp/{matricule}")

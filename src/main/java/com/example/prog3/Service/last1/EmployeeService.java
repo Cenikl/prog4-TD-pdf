@@ -259,5 +259,14 @@ public class EmployeeService {
         employeeDetails.setImage(employee.getEmplImg());
         return employeeDetails;
     }
+    public void generatePdfFromHtml(String html,String filename) throws IOException, DocumentException {
+        String outputFolder = System.getProperty("user.home")+File.separator+"fiche_"+filename+".pdf";
+        OutputStream outputStream = new FileOutputStream(outputFolder);
+        ITextRenderer renderer = new ITextRenderer();
+        renderer.setDocumentFromString(html);
+        renderer.layout();
+        renderer.createPDF(outputStream);
+        outputStream.close();
+    }
 
 }
