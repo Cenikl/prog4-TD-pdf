@@ -1,0 +1,1 @@
+alter table "employee" add column wage int not null default 0;

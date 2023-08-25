@@ -63,6 +63,9 @@ public class Employee {
     @Column(nullable = false)
     private String cin;
 
+    @Column(nullable = false)
+    private int wage;
+
     @Lob
     private byte[] emplImg;
 

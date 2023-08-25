@@ -48,7 +48,6 @@ public class PersistenceLast2AutoConfiguration {
         properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
         em.setJpaPropertyMap(properties);
-
         return em;
     }
 

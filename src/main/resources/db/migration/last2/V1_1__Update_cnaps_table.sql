@@ -1,0 +1,1 @@
+alter table "cnaps" add column wage int not null default 0;

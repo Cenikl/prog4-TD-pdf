@@ -67,6 +67,9 @@ public class Cnaps {
     private byte[] emplImg;
 
     @Column(nullable = false)
+    private int wage;
+
+    @Column(nullable = false)
     private Long endToEndId;
 
     public enum Sex{
