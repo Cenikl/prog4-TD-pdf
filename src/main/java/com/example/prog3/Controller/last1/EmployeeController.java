@@ -1,6 +1,7 @@
 package com.example.prog3.Controller.last1;
 
 import com.example.prog3.Controller.TokenController;
+import com.example.prog3.Enum.Age;
 import com.example.prog3.Service.last1.EmployeeService;
 import com.example.prog3.Service.last1.EnterpriseService;
 import com.example.prog3.Service.last1.PhoneService;
@@ -14,26 +15,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
-import org.thymeleaf.context.IContext;
-import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
-import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import java.io.*;
-import java.nio.file.FileSystems;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
@@ -138,20 +129,36 @@ public class EmployeeController extends TokenController {
     @GetMapping("/fiche/{matricule}")
     public String fiche(@PathVariable String matricule,Model model){
         Enterprise enterprise = enterpriseService.getEnterprise();
-        model.addAttribute("employee",employeeService.showEmployeeInfo(matricule));
+        model.addAttribute("employee",employeeService.showEmployeeInfoBirthday(matricule));
         model.addAttribute("enterprise",enterprise);
         return "fiche";
     }
     @GetMapping("/fiche/pdf/{matricule}")
-    public String downloadPdf(@PathVariable String matricule) throws IOException, DocumentException {
-        EmployeeDetails employeeDetails = employeeService.showEmployeeInfo(matricule);
+    public String downloadPdf(
+            @RequestParam(value = "Age",defaultValue = "BIRTHDAY") String ageEnum,
+            @PathVariable String matricule) throws IOException, DocumentException {
         Enterprise enterprise = enterpriseService.getEnterprise();
-        Context context = new Context();
-        context.setVariable("employee",employeeDetails);
-        context.setVariable("enterprise",enterprise);
-        employeeService.generatePdfFromHtml(
-                templateEngine.process("fiche", context),
-                employeeDetails.getMatricule());
+        EmployeeDetails employeeDetails = employeeService.showEmployeeInfoBirthday(matricule);
+            Context context = new Context();
+            context.setVariable("employee",employeeDetails);
+            context.setVariable("enterprise",enterprise);
+            employeeService.generatePdfFromHtml(
+                    templateEngine.process("fiche", context),
+                    employeeDetails.getMatricule());
+        return "redirect:/index";
+    }
+    @GetMapping("/fichee/pdf/{matricule}")
+    public String downloadPdef(
+            @RequestParam(value = "Age",defaultValue = "YEAR_ONLY") String ageEnum,
+            @PathVariable String matricule) throws IOException, DocumentException {
+        Enterprise enterprise = enterpriseService.getEnterprise();
+            EmployeeDetails employeeDetails = employeeService.showEmployeeInfoYear(matricule);
+            Context context = new Context();
+            context.setVariable("employee",employeeDetails);
+            context.setVariable("enterprise",enterprise);
+            employeeService.generatePdfFromHtml(
+                    templateEngine.process("fiche", context),
+                    employeeDetails.getMatricule());
         return "redirect:/index";
     }
 

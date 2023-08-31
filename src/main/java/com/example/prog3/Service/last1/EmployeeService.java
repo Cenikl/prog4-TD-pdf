@@ -4,7 +4,6 @@ import com.example.prog3.Repository.RepositoryFacadeImpl;
 import com.example.prog3.dto.EmployeeDetails;
 import com.example.prog3.model.last1.Employee;
 import com.example.prog3.Repository.last1.EmployeeRepository;
-import com.example.prog3.model.last1.Enterprise;
 import com.example.prog3.model.last1.Phone;
 import com.example.prog3.utils.AgeCalculator;
 import com.example.prog3.utils.MatriculeGenerator;
@@ -20,10 +19,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
-import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import java.io.*;
@@ -244,14 +239,29 @@ public class EmployeeService {
         employee.setCin(cin);
         return employeeRepository.save(employee);
         }
-    public EmployeeDetails showEmployeeInfo(String matricule){
+    public EmployeeDetails showEmployeeInfoBirthday(String matricule){
         Employee employee = getByMatriculeWithCnaps(matricule);
         EmployeeDetails employeeDetails = new EmployeeDetails();
         employeeDetails.setId(employee.getId());
         employeeDetails.setMatricule(employee.getMatricule());
         employeeDetails.setFirstName(employee.getFirstName());
         employeeDetails.setLastName(employee.getLastName());
-        employeeDetails.setAge(AgeCalculator.age(employee.getBirthDate(),LocalDate.now()));
+        employeeDetails.setAge(AgeCalculator.ageDay(employee.getBirthDate(),LocalDate.now()));
+        employeeDetails.setEmployementDate(employee.getEmployementDate());
+        employeeDetails.setDepartureDate(employee.getDepartureDate());
+        employeeDetails.setCnaps(employee.getCnaps());
+        employeeDetails.setSalary(employee.getWage());
+        employeeDetails.setImage(employee.getEmplImg());
+        return employeeDetails;
+    }
+    public EmployeeDetails showEmployeeInfoYear(String matricule){
+        Employee employee = getByMatriculeWithCnaps(matricule);
+        EmployeeDetails employeeDetails = new EmployeeDetails();
+        employeeDetails.setId(employee.getId());
+        employeeDetails.setMatricule(employee.getMatricule());
+        employeeDetails.setFirstName(employee.getFirstName());
+        employeeDetails.setLastName(employee.getLastName());
+        employeeDetails.setAge(AgeCalculator.ageYear(employee.getBirthDate(),LocalDate.now()));
         employeeDetails.setEmployementDate(employee.getEmployementDate());
         employeeDetails.setDepartureDate(employee.getDepartureDate());
         employeeDetails.setCnaps(employee.getCnaps());
